@@ -1,0 +1,9 @@
+# ignore everything
+*
+
+# track py files in project directories
+!/.gitignore
+!*/
+!*.html
+!prices.csv
+
