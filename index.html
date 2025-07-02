@@ -52,6 +52,9 @@
         <div class="header">
             <h1>🛒 רשימת קניות</h1>
         </div>
+        <div class="controls" style="display:flex; flex-direction:row; justify-content:flex-start; align-items:center; width:100%;">
+            <input type="text" id="searchBar" placeholder="חפש מוצר..." style="width:100%; margin-right:0; padding:10px 16px; border-radius:20px; border:1px solid #ccc; font-size:1em; direction:rtl;">
+        </div>
         <div id="productsList">
             <div class="loading">
                 <p>טוען נתונים...</p>
@@ -61,6 +64,7 @@
     <script>
         let products = [];
         let selectedItems = new Set();
+        let searchText = '';
         const PRICE_DIFF_THRESHOLD = 5;
         const EPSILON = 0.05;
         const storeNameMap = { rl: 'רמי לוי', hh: 'חצי חינם' };
@@ -176,6 +180,13 @@
                 return;
             }
 
+            // Filter products by search text
+            let filteredProducts = products.products;
+            if (searchText.trim() !== '') {
+                const search = searchText.trim().toLowerCase();
+                filteredProducts = products.products.filter(p => p.name.toLowerCase().includes(search));
+            }
+
             let anySelected = selectedItems.size > 0;
             let html = `
                 <div class="controls" style="display:flex;flex-direction:row-reverse;justify-content:space-between;align-items:center;">
@@ -195,14 +206,14 @@
             products.stores.forEach(store => { storeGroups[store] = []; });
             const ungrouped = [];
             
-            products.products.forEach((product, index) => {
+            filteredProducts.forEach((product, index) => {
+                // Find the original index in products.products for selection
+                const originalIndex = products.products.indexOf(product);
                 const minStore = getRecommendedStore(product);
-                console.log('Product:', product.name, 'Prices:', product.prices, 'Chosen group:', minStore);
-                
-                if (selectedItems.has(index) && minStore) {
-                    storeGroups[minStore].push({ product, index });
+                if (selectedItems.has(originalIndex) && minStore) {
+                    storeGroups[minStore].push({ product, index: originalIndex });
                 } else {
-                    ungrouped.push({ product, index });
+                    ungrouped.push({ product, index: originalIndex });
                 }
             });
 
@@ -301,6 +312,16 @@
                 downloadHtmlBtn.replaceWith(downloadHtmlBtn.cloneNode(true));
                 const newDownloadBtn = document.getElementById('downloadHtmlBtn');
                 newDownloadBtn.addEventListener('click', downloadShoppingListHtml);
+            }
+
+            // Setup search bar
+            const searchBar = document.getElementById('searchBar');
+            if (searchBar) {
+                searchBar.value = searchText;
+                searchBar.oninput = function() {
+                    searchText = this.value;
+                    displayProducts();
+                };
             }
         }
 
