@@ -45,6 +45,8 @@
         @media (max-width: 768px) { .product-item, .store-header { grid-template-columns: 40px 1fr auto; gap: 6px; padding: 4px 4px; font-size: 0.9em; min-height: 22px; } .product-name { font-size: 0.93em; } .price-cell, .store-name { min-width: 40px; padding: 2px 2px; font-size: 0.9em; } .controls, .summary, .section-title { padding: 4px 4px; } }
         .btn-grey { background: #888; color: #fff; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.3s ease; text-decoration: none; display: inline-block; }
         .btn-grey:disabled { background: #ccc; color: #eee; cursor: not-allowed; }
+        .amount-input { border-radius: 20px; border: 1px solid #ccc; box-shadow: none; }
+        .product-name-amount { display: flex; flex-direction: row; align-items: center; gap: 8px; }
     </style>
 </head>
 <body>
@@ -52,8 +54,9 @@
         <div class="header">
             <h1>🛒 רשימת קניות</h1>
         </div>
-        <div class="controls" style="display:flex; flex-direction:row; justify-content:flex-start; align-items:center; width:100%;">
-            <input type="text" id="searchBar" placeholder="חפש מוצר..." style="width:100%; margin-right:0; padding:10px 16px; border-radius:20px; border:1px solid #ccc; font-size:1em; direction:rtl;">
+        <div class="controls" style="display:flex; flex-direction:row; justify-content:flex-start; align-items:center; width:100%; gap: 10px;">
+            <input type="text" id="searchBar" placeholder="חפש מוצר..." style="flex:1; width:0; margin-right:0; padding:10px 16px; border-radius:20px; border:1px solid #ccc; font-size:1em; direction:rtl;">
+            <button class="btn btn-grey" id="downloadHtmlBtn" style="order:2; min-width:120px;" disabled>הורד רשימה</button>
         </div>
         <div id="productsList">
             <div class="loading">
@@ -65,6 +68,7 @@
         let products = [];
         let selectedItems = new Set();
         let searchText = '';
+        let productAmounts = {};
         const PRICE_DIFF_THRESHOLD = 5;
         const EPSILON = 0.05;
         const storeNameMap = { rl: 'רמי לוי', hh: 'חצי חינם' };
@@ -118,14 +122,17 @@
             }
         }
 
-        function renderPriceCell(product, store2, isSelected, minPrice, maxPrice) {
+        function renderPriceCell(product, store2, isSelected, minPrice, maxPrice, amount = 1) {
             if (!isSelected) {
                 return '<div class="price-cell"></div>';
             }
-            
             const price = product.prices[store2];
+            if (typeof price !== 'number') {
+                return '<div class="price-cell"></div>';
+            }
             const priceClass = getPriceCellClass(product, price, minPrice, maxPrice);
-            const priceText = price ? `₪${price.toFixed(2)}` : 'N/A';
+            const total = price * amount;
+            const priceText = `₪${total.toFixed(2)}`;
             return `<div class="price-cell ${priceClass}">${priceText}</div>`;
         }
 
@@ -188,14 +195,11 @@
             }
 
             let anySelected = selectedItems.size > 0;
-            let html = `
-                <div class="controls" style="display:flex;flex-direction:row-reverse;justify-content:space-between;align-items:center;">
-                    <button class="btn btn-grey" id="downloadHtmlBtn" style="order:2;" ${anySelected ? '' : 'disabled'}>הורד HTML</button>
-                </div>
-                <div class="store-header">
-                    <div><input type="checkbox" id="selectAllCheckbox" class="checkbox" onclick="toggleSelectAll()"></div>
-                    <div>שם המוצר</div>`;
+            let html = '';
             
+            html += '<div class="store-header">';
+            html += '<div><input type="checkbox" id="selectAllCheckbox" class="checkbox" onclick="toggleSelectAll()"></div>';
+            html += '<div>שם המוצר</div>';
             products.stores.forEach(store => { 
                 html += `<div class="store-name">${storeNameMap[store] || store}</div>`; 
             });
@@ -230,24 +234,28 @@
                     group.forEach(({ product, index }) => {
                         const isSelected = selectedItems.has(index);
                         const { minPrice, maxPrice } = findMinMaxPrices(product);
-                        
+                        const amount = productAmounts[index] || 1;
                         html += `
                     <div class="product-item${isSelected ? ' selected' : ''}" data-index="${index}">
                         <input type="checkbox" class="checkbox" onclick="toggleItem(${index})" ${isSelected ? 'checked' : ''}>
-                        <div class="product-name">${product.name}</div>`;
+                        <span class="product-name-amount">
+                            <div class="product-name">${product.name}</div>
+                            <input type="number" class="amount-input" id="amount-${index}" min="1" value="${amount}" style="width:50px;direction:ltr;text-align:center;" onchange="updateAmount(${index}, this.value)">
+                        </span>
+`;
                         
                         products.stores.forEach(store2 => {
                             if (isSelected) {
                                 const price = product.prices[store2];
-                                if (store2 === store && typeof price === 'number') groupSum += price;
+                                if (store2 === store && typeof price === 'number') groupSum += price * amount;
                                 
                                 // Calculate difference for hh group vs rl
                                 if (store === 'hh' && store2 === 'hh' && typeof product.prices['rl'] === 'number' && typeof price === 'number') {
-                                    diffSum += price - product.prices['rl'];
+                                    diffSum += (price - product.prices['rl']) * amount;
                                 }
                             }
                             
-                            html += renderPriceCell(product, store2, isSelected, minPrice, maxPrice);
+                            html += renderPriceCell(product, store2, isSelected, minPrice, maxPrice, amount);
                         });
                         html += '</div>';
                     });
@@ -262,9 +270,10 @@
                             if (store === 'hh') {
                                 storeDiffSum = diffSum;
                             } else if (store === 'rl') {
-                                group.forEach(({ product }) => {
+                                group.forEach(({ product, index }) => {
+                                    const amount = productAmounts[index] || 1;
                                     if (typeof product.prices['rl'] === 'number' && typeof product.prices['hh'] === 'number') {
-                                        storeDiffSum += product.prices['rl'] - product.prices['hh'];
+                                        storeDiffSum += (product.prices['rl'] - product.prices['hh']) * amount;
                                     }
                                 });
                             }
@@ -282,14 +291,18 @@
                 ungrouped.forEach(({ product, index }) => {
                     const isSelected = selectedItems.has(index);
                     const { minPrice, maxPrice } = findMinMaxPrices(product);
-                    
+                    const amount = productAmounts[index] || 1;
                     html += `
                     <div class="product-item${isSelected ? ' selected' : ''}" data-index="${index}">
                         <input type="checkbox" class="checkbox" onclick="toggleItem(${index})" ${isSelected ? 'checked' : ''}>
-                        <div class="product-name">${product.name}</div>`;
+                        <span class="product-name-amount">
+                            <div class="product-name">${product.name}</div>
+                            <input type="number" class="amount-input" id="amount-${index}" min="1" value="${amount}" style="width:50px;direction:ltr;text-align:center;" onchange="updateAmount(${index}, this.value)">
+                        </span>
+`;
                     
                     products.stores.forEach(store2 => {
-                        html += renderPriceCell(product, store2, isSelected, minPrice, maxPrice);
+                        html += renderPriceCell(product, store2, isSelected, minPrice, maxPrice, amount);
                     });
                     html += '</div>';
                 });
@@ -344,6 +357,13 @@
             displayProducts();
         }
 
+        function updateAmount(index, value) {
+            let v = parseInt(value);
+            if (isNaN(v) || v < 1) v = 1;
+            productAmounts[index] = v;
+            displayProducts();
+        }
+
         // Error display functions
         function showError(message) {
             let errorDiv = document.getElementById('errorMessage');
@@ -374,11 +394,13 @@
                     const minStore = getRecommendedStore(product);
                     if (minStore) {
                         let price = product.prices[minStore];
+                        const amount = productAmounts[index] || 1;
+                        let itemLine = product.name;
+                        if (amount > 1) itemLine += ` (x${amount})`;
                         if (typeof price === 'number') {
-                            storeGroups[minStore].push(`${product.name} - ₪${price.toFixed(2)}`);
-                        } else {
-                            storeGroups[minStore].push(`${product.name}`);
+                            itemLine += ` - ₪${(price * amount).toFixed(2)}`;
                         }
+                        storeGroups[minStore].push(itemLine);
                     }
                 }
             });
