@@ -159,7 +159,7 @@
             const firstLine = lines[0].replace(/^\uFEFF/, '');
             const headers = firstLine.split(',').map(h => h.trim());
             if (headers[0] !== 'Product Name') { throw new Error('הקובץ אינו מכיל עמודת "Product Name"'); }
-            const stores = headers.slice(1);
+            const stores = headers.slice(1, -1); // Exclude the last column (hh_order)
             const products = [];
             for (let i = 1; i < lines.length; i++) {
                 const line = lines[i].trim();
@@ -170,10 +170,15 @@
                 if (productName.startsWith('"') && productName.endsWith('"')) {
                     productName = productName.slice(1, -1);
                 }
-                const product = { name: productName, prices: {} };
-                for (let j = 1; j < values.length; j++) {
+                const product = { name: productName, prices: {}, hh_order: null };
+                for (let j = 1; j < values.length - 1; j++) { // Skip the last column (hh_order)
                     const price = values[j];
                     if (price && price !== 'N/A') { product.prices[stores[j-1]] = parseFloat(price); }
+                }
+                // Parse hh_order (last column)
+                const hhOrder = values[values.length - 1];
+                if (hhOrder && hhOrder !== 'N/A' && hhOrder !== '') {
+                    product.hh_order = parseInt(hhOrder);
                 }
                 products.push(product);
             }
@@ -226,7 +231,14 @@
                 const group = storeGroups[store];
                 if (group.length > 0) {
                     html += `<div class="section-title">${storeNameMap[store] || store}</div>`;
-                    group.sort((a, b) => a.product.name.localeCompare(b.product.name, 'he'));
+                    group.sort((a, b) => {
+                        const orderA = a.product.hh_order || 999999;
+                        const orderB = b.product.hh_order || 999999;
+                        if (orderA === orderB) {
+                            return a.product.name.localeCompare(b.product.name, 'he');
+                        }
+                        return orderA - orderB;
+                    });
                     
                     let groupSum = 0;
                     let diffSum = 0;
@@ -287,7 +299,14 @@
 
             // Render ungrouped products
             if (ungrouped.length > 0) {
-                ungrouped.sort((a, b) => a.product.name.localeCompare(b.product.name, 'he'));
+                ungrouped.sort((a, b) => {
+                    const orderA = a.product.hh_order || 999999;
+                    const orderB = b.product.hh_order || 999999;
+                    if (orderA === orderB) {
+                        return a.product.name.localeCompare(b.product.name, 'he');
+                    }
+                    return orderA - orderB;
+                });
                 ungrouped.forEach(({ product, index }) => {
                     const isSelected = selectedItems.has(index);
                     const { minPrice, maxPrice } = findMinMaxPrices(product);
