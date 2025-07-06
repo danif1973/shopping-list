@@ -14,16 +14,91 @@
 ביצים 18 יח' L,21.13,20.90,N/A
 ביצים 18 יח' M,19.50,N/A,N/A
 בירה קרומבכר חיטה פחית,10.00,8.20,N/A
-בירה קרומבכר שישייה,37.20,29.60,N/A
+בירה קרומבכר שישייה,37.20,"Error scraping price: Message: 
+Stacktrace:
+	GetHandleVerifier [0x0x7ff679216f65+78965]
+	GetHandleVerifier [0x0x7ff679216fc0+79056]
+	(No symbol) [0x0x7ff678fa9dda]
+	(No symbol) [0x0x7ff6790002ea]
+	(No symbol) [0x0x7ff67900059c]
+	(No symbol) [0x0x7ff679053f37]
+	(No symbol) [0x0x7ff6790286af]
+	(No symbol) [0x0x7ff679050dbe]
+	(No symbol) [0x0x7ff679028443]
+	(No symbol) [0x0x7ff678ff1311]
+	(No symbol) [0x0x7ff678ff20a3]
+	GetHandleVerifier [0x0x7ff6794ce26d+2926461]
+	GetHandleVerifier [0x0x7ff6794c8993+2903715]
+	GetHandleVerifier [0x0x7ff6794e6aed+3026941]
+	GetHandleVerifier [0x0x7ff6792316fe+187406]
+	GetHandleVerifier [0x0x7ff6792396ef+220159]
+	GetHandleVerifier [0x0x7ff67921faf4+114692]
+	GetHandleVerifier [0x0x7ff67921fca9+115129]
+	GetHandleVerifier [0x0x7ff6792064d8+10728]
+	BaseThreadInitThunk [0x0x7ffc2963259d+29]
+	DummyExport [0x0x7ffbdc2f748e+75534]
+	DummyExport [0x0x7ffbdc3457bc+395836]
+	RtlUserThreadStart [0x0x7ffc29acaf78+40]
+",N/A
 במבה,4.60,4.30,N/A
 בננה,7.90,7.90,N/A
 ברוקולי קפוא,26.20,32.10,N/A
 גבינה צפתית,17.90,12.70,N/A
-גבינת חלומי גד,25.00,24.10,N/A
+גבינת חלומי גד,25.00,"Error scraping price: Message: 
+Stacktrace:
+	GetHandleVerifier [0x0x7ff679216f65+78965]
+	GetHandleVerifier [0x0x7ff679216fc0+79056]
+	(No symbol) [0x0x7ff678fa9dda]
+	(No symbol) [0x0x7ff6790002ea]
+	(No symbol) [0x0x7ff67900059c]
+	(No symbol) [0x0x7ff679053f37]
+	(No symbol) [0x0x7ff6790286af]
+	(No symbol) [0x0x7ff679050dbe]
+	(No symbol) [0x0x7ff679028443]
+	(No symbol) [0x0x7ff678ff1311]
+	(No symbol) [0x0x7ff678ff20a3]
+	GetHandleVerifier [0x0x7ff6794ce26d+2926461]
+	GetHandleVerifier [0x0x7ff6794c8993+2903715]
+	GetHandleVerifier [0x0x7ff6794e6aed+3026941]
+	GetHandleVerifier [0x0x7ff6792316fe+187406]
+	GetHandleVerifier [0x0x7ff6792396ef+220159]
+	GetHandleVerifier [0x0x7ff67921faf4+114692]
+	GetHandleVerifier [0x0x7ff67921fca9+115129]
+	GetHandleVerifier [0x0x7ff6792064d8+10728]
+	BaseThreadInitThunk [0x0x7ffc2963259d+29]
+	DummyExport [0x0x7ffbdc2f748e+75534]
+	DummyExport [0x0x7ffbdc3457bc+395836]
+	RtlUserThreadStart [0x0x7ffc29acaf78+40]
+",N/A
 גבינת סקי 250 גר',6.10,N/A,N/A
 גבינת סקי 500 גר',11.62,N/A,N/A
 גבינת שמנת פילדלפיה,14.10,15.00,N/A
-גולדסטאר שישיה,33.90,31.90,N/A
+גולדסטאר שישיה,33.90,"Error scraping price: Message: 
+Stacktrace:
+	GetHandleVerifier [0x0x7ff679216f65+78965]
+	GetHandleVerifier [0x0x7ff679216fc0+79056]
+	(No symbol) [0x0x7ff678fa9dda]
+	(No symbol) [0x0x7ff6790002ea]
+	(No symbol) [0x0x7ff67900059c]
+	(No symbol) [0x0x7ff679053f37]
+	(No symbol) [0x0x7ff6790286af]
+	(No symbol) [0x0x7ff679050dbe]
+	(No symbol) [0x0x7ff679028443]
+	(No symbol) [0x0x7ff678ff1311]
+	(No symbol) [0x0x7ff678ff20a3]
+	GetHandleVerifier [0x0x7ff6794ce26d+2926461]
+	GetHandleVerifier [0x0x7ff6794c8993+2903715]
+	GetHandleVerifier [0x0x7ff6794e6aed+3026941]
+	GetHandleVerifier [0x0x7ff6792316fe+187406]
+	GetHandleVerifier [0x0x7ff6792396ef+220159]
+	GetHandleVerifier [0x0x7ff67921faf4+114692]
+	GetHandleVerifier [0x0x7ff67921fca9+115129]
+	GetHandleVerifier [0x0x7ff6792064d8+10728]
+	BaseThreadInitThunk [0x0x7ffc2963259d+29]
+	DummyExport [0x0x7ffbdc2f748e+75534]
+	DummyExport [0x0x7ffbdc3457bc+395836]
+	RtlUserThreadStart [0x0x7ffc29acaf78+40]
+",N/A
 גייטורייד,11.00,N/A,N/A
 גרנולה פיטנס שוקולד,15.10,16.50,N/A
 דבש,18.90,22.20,N/A
@@ -74,7 +149,32 @@ Stacktrace:
 מארז בייגל,21.90,N/A,N/A
 מגבוני האגיס אקסטרה קייר,N/A,24.30,N/A
 מגבוני האגיס לעור רגיש,23.10,14.90,N/A
-מטליות לניקוי כללי של ניקול,11.00,10.90,N/A
+מטליות לניקוי כללי של ניקול,11.00,"Error scraping price: Message: 
+Stacktrace:
+	GetHandleVerifier [0x0x7ff679216f65+78965]
+	GetHandleVerifier [0x0x7ff679216fc0+79056]
+	(No symbol) [0x0x7ff678fa9dda]
+	(No symbol) [0x0x7ff6790002ea]
+	(No symbol) [0x0x7ff67900059c]
+	(No symbol) [0x0x7ff679053f37]
+	(No symbol) [0x0x7ff6790286af]
+	(No symbol) [0x0x7ff679050dbe]
+	(No symbol) [0x0x7ff679028443]
+	(No symbol) [0x0x7ff678ff1311]
+	(No symbol) [0x0x7ff678ff20a3]
+	GetHandleVerifier [0x0x7ff6794ce26d+2926461]
+	GetHandleVerifier [0x0x7ff6794c8993+2903715]
+	GetHandleVerifier [0x0x7ff6794e6aed+3026941]
+	GetHandleVerifier [0x0x7ff6792316fe+187406]
+	GetHandleVerifier [0x0x7ff6792396ef+220159]
+	GetHandleVerifier [0x0x7ff67921faf4+114692]
+	GetHandleVerifier [0x0x7ff67921fca9+115129]
+	GetHandleVerifier [0x0x7ff6792064d8+10728]
+	BaseThreadInitThunk [0x0x7ffc2963259d+29]
+	DummyExport [0x0x7ffbdc2f748e+75534]
+	DummyExport [0x0x7ffbdc3457bc+395836]
+	RtlUserThreadStart [0x0x7ffc29acaf78+40]
+",N/A
 מיונז שום מסטר שף,7.00,6.90,N/A
 מילקי טופ,4.80,4.80,N/A
 מיץ תפוחים ספרינג לייט,7.40,7.60,N/A
@@ -91,7 +191,32 @@ Stacktrace:
 נייר סופג  פרפקט 6 גלילים כפול,16.90,N/A,N/A
 נייר סופג ניקול 6 גלילים,14.10,11.00,N/A
 נייר סופג סנו סושי גליל גדול,21.90,N/A,N/A
-נייר סופג סנו סושי שישיה ,13.20,13.00,N/A
+נייר סופג סנו סושי שישיה ,13.20,"Error scraping price: Message: 
+Stacktrace:
+	GetHandleVerifier [0x0x7ff679216f65+78965]
+	GetHandleVerifier [0x0x7ff679216fc0+79056]
+	(No symbol) [0x0x7ff678fa9dda]
+	(No symbol) [0x0x7ff6790002ea]
+	(No symbol) [0x0x7ff67900059c]
+	(No symbol) [0x0x7ff679053f37]
+	(No symbol) [0x0x7ff6790286af]
+	(No symbol) [0x0x7ff679050dbe]
+	(No symbol) [0x0x7ff679028443]
+	(No symbol) [0x0x7ff678ff1311]
+	(No symbol) [0x0x7ff678ff20a3]
+	GetHandleVerifier [0x0x7ff6794ce26d+2926461]
+	GetHandleVerifier [0x0x7ff6794c8993+2903715]
+	GetHandleVerifier [0x0x7ff6794e6aed+3026941]
+	GetHandleVerifier [0x0x7ff6792316fe+187406]
+	GetHandleVerifier [0x0x7ff6792396ef+220159]
+	GetHandleVerifier [0x0x7ff67921faf4+114692]
+	GetHandleVerifier [0x0x7ff67921fca9+115129]
+	GetHandleVerifier [0x0x7ff6792064d8+10728]
+	BaseThreadInitThunk [0x0x7ffc2963259d+29]
+	DummyExport [0x0x7ffbdc2f748e+75534]
+	DummyExport [0x0x7ffbdc3457bc+395836]
+	RtlUserThreadStart [0x0x7ffc29acaf78+40]
+",N/A
 נייר סופג פרפקט 6 גלילים,13.90,N/A,N/A
 נייר סופג פרפקט 8 גלילים,12.90,N/A,N/A
 סבון ידיים פלמוליב,18.10,12.30,N/A
@@ -114,20 +239,71 @@ Stacktrace:
 "צ'יפס קפוא פרי הגליל 2 ק""ג",30.20,23.90,N/A
 קוטג' טרה,6.50,6.30,N/A
 קולה 1 ל',6.60,6.70,N/A
+קולה זירו 1 ל',6.60,N/A,N/A
 קוסקוס,4.00,5.90,N/A
 קורנפלקס פיטנס,22.90,N/A,N/A
 קטשופ,6.50,10.20,N/A
 קמח חיטה ,4.40,3.80,N/A
 קפה ג'ייקובס,29.90,35.50,N/A
 קפה טייסטרס צ'ויס,35.90,36.20,N/A
-רצפז פלוס דוחה תיקנים 2 ל',23.20,39.90,N/A
+רצפז פלוס דוחה תיקנים 2 ל',23.20,"Error scraping price: Message: 
+Stacktrace:
+	GetHandleVerifier [0x0x7ff679216f65+78965]
+	GetHandleVerifier [0x0x7ff679216fc0+79056]
+	(No symbol) [0x0x7ff678fa9dda]
+	(No symbol) [0x0x7ff6790002ea]
+	(No symbol) [0x0x7ff67900059c]
+	(No symbol) [0x0x7ff679053f37]
+	(No symbol) [0x0x7ff6790286af]
+	(No symbol) [0x0x7ff679050dbe]
+	(No symbol) [0x0x7ff679028443]
+	(No symbol) [0x0x7ff678ff1311]
+	(No symbol) [0x0x7ff678ff20a3]
+	GetHandleVerifier [0x0x7ff6794ce26d+2926461]
+	GetHandleVerifier [0x0x7ff6794c8993+2903715]
+	GetHandleVerifier [0x0x7ff6794e6aed+3026941]
+	GetHandleVerifier [0x0x7ff6792316fe+187406]
+	GetHandleVerifier [0x0x7ff6792396ef+220159]
+	GetHandleVerifier [0x0x7ff67921faf4+114692]
+	GetHandleVerifier [0x0x7ff67921fca9+115129]
+	GetHandleVerifier [0x0x7ff6792064d8+10728]
+	BaseThreadInitThunk [0x0x7ffc2963259d+29]
+	DummyExport [0x0x7ffbdc2f748e+75534]
+	DummyExport [0x0x7ffbdc3457bc+395836]
+	RtlUserThreadStart [0x0x7ffc29acaf78+40]
+",N/A
 שום כתוש קפוא דורות,13.10,N/A,N/A
 שוקולד מילקה,10.00,6.80,N/A
 "שישיית מי עדן 500 מ""ל",12.90,15.30,N/A
 "שמן זית יד מרדכי 500 מ""ל",27.90,33.90,N/A
 "שמן זית יד מרדכי 750 מ""ל",38.90,N/A,N/A
 שמן קנולה עץ הזית 1 ל',15.10,12.60,N/A
-שמנת חמוצה 15%,2.30,2.80,N/A
+שמנת חמוצה 15%,2.30,"Error scraping price: Message: 
+Stacktrace:
+	GetHandleVerifier [0x0x7ff679216f65+78965]
+	GetHandleVerifier [0x0x7ff679216fc0+79056]
+	(No symbol) [0x0x7ff678fa9dda]
+	(No symbol) [0x0x7ff6790002ea]
+	(No symbol) [0x0x7ff67900059c]
+	(No symbol) [0x0x7ff679053f37]
+	(No symbol) [0x0x7ff6790286af]
+	(No symbol) [0x0x7ff679050dbe]
+	(No symbol) [0x0x7ff679028443]
+	(No symbol) [0x0x7ff678ff1311]
+	(No symbol) [0x0x7ff678ff20a3]
+	GetHandleVerifier [0x0x7ff6794ce26d+2926461]
+	GetHandleVerifier [0x0x7ff6794c8993+2903715]
+	GetHandleVerifier [0x0x7ff6794e6aed+3026941]
+	GetHandleVerifier [0x0x7ff6792316fe+187406]
+	GetHandleVerifier [0x0x7ff6792396ef+220159]
+	GetHandleVerifier [0x0x7ff67921faf4+114692]
+	GetHandleVerifier [0x0x7ff67921fca9+115129]
+	GetHandleVerifier [0x0x7ff6792064d8+10728]
+	BaseThreadInitThunk [0x0x7ffc2963259d+29]
+	DummyExport [0x0x7ffbdc2f748e+75534]
+	DummyExport [0x0x7ffbdc3457bc+395836]
+	RtlUserThreadStart [0x0x7ffc29acaf78+40]
+",N/A
 שמנת חמוצה 9%,4.70,4.50,N/A
 שמנת לבישול,9.80,9.60,N/A
 שמנת מתוקה,8.30,7.80,N/A
