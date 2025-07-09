@@ -1,9 +1,9 @@
 ﻿Product Name,hh,rl,hh_order
-"אבקת כביסה אריאל 3 ק""ג",40.30,39.90,10
+"אבקת כביסה אריאל 3 ק""ג",40.30,35.70,10
 "אבקת כביסה תינוקלין 3 ק""ג",50.40,39.50,10
 אבקת פרמזן ,15.10,15.30,40
 אגס,14.90,13.90,300
-אולווייז נורמל 80 יח',20.10,19.00,25
+אולווייז נורמל 80 יח',20.10,19.40,25
 אורז בסמטי סוגת,15.10,13.00,85
 אקונומיקה סנו ג'וואל 4 ל',17.20,17.10,20
 אקטימל 8 יח',20.10,20.40,40
@@ -45,25 +45,25 @@
 טמפקס כתום 30 יח',N/A,N/A,25
 טמפקס צהוב 30 יח',"Error scraping price: Message: 
 Stacktrace:
-	GetHandleVerifier [0x0x7ff6d3576f65+78965]
-	GetHandleVerifier [0x0x7ff6d3576fc0+79056]
-	(No symbol) [0x0x7ff6d3309dda]
-	(No symbol) [0x0x7ff6d33602ea]
-	(No symbol) [0x0x7ff6d336059c]
-	(No symbol) [0x0x7ff6d33b3f37]
-	(No symbol) [0x0x7ff6d33886af]
-	(No symbol) [0x0x7ff6d33b0dbe]
-	(No symbol) [0x0x7ff6d3388443]
-	(No symbol) [0x0x7ff6d3351311]
-	(No symbol) [0x0x7ff6d33520a3]
-	GetHandleVerifier [0x0x7ff6d382e26d+2926461]
-	GetHandleVerifier [0x0x7ff6d3828993+2903715]
-	GetHandleVerifier [0x0x7ff6d3846aed+3026941]
-	GetHandleVerifier [0x0x7ff6d35916fe+187406]
-	GetHandleVerifier [0x0x7ff6d35996ef+220159]
-	GetHandleVerifier [0x0x7ff6d357faf4+114692]
-	GetHandleVerifier [0x0x7ff6d357fca9+115129]
-	GetHandleVerifier [0x0x7ff6d35664d8+10728]
+	GetHandleVerifier [0x0x7ff741046f65+78965]
+	GetHandleVerifier [0x0x7ff741046fc0+79056]
+	(No symbol) [0x0x7ff740dd9dda]
+	(No symbol) [0x0x7ff740e302ea]
+	(No symbol) [0x0x7ff740e3059c]
+	(No symbol) [0x0x7ff740e83f37]
+	(No symbol) [0x0x7ff740e586af]
+	(No symbol) [0x0x7ff740e80dbe]
+	(No symbol) [0x0x7ff740e58443]
+	(No symbol) [0x0x7ff740e21311]
+	(No symbol) [0x0x7ff740e220a3]
+	GetHandleVerifier [0x0x7ff7412fe26d+2926461]
+	GetHandleVerifier [0x0x7ff7412f8993+2903715]
+	GetHandleVerifier [0x0x7ff741316aed+3026941]
+	GetHandleVerifier [0x0x7ff7410616fe+187406]
+	GetHandleVerifier [0x0x7ff7410696ef+220159]
+	GetHandleVerifier [0x0x7ff74104faf4+114692]
+	GetHandleVerifier [0x0x7ff74104fca9+115129]
+	GetHandleVerifier [0x0x7ff7410364d8+10728]
 	BaseThreadInitThunk [0x0x7ffc2963259d+29]
 	DummyExport [0x0x7ffbdc2f748e+75534]
 	DummyExport [0x0x7ffbdc3457bc+395836]
@@ -81,7 +81,7 @@ Stacktrace:
 מילקי טופ,4.80,4.80,40
 מיץ תפוחים ספרינג לייט,7.40,7.60,130
 מלפפון במלח קטן של בית השיטה,13.20,13.40,90
-מלפפון ירוק,5.90,4.90,300
+מלפפון ירוק,5.90,1.80,300
 מסטיק אורביט ללא סוכר,11.00,10.70,140
 מרכך כביסה בדין  4 ל',N/A,25.30,10
 מרכך כביסה מקסימה  4 ל',23.10,20.40,10
@@ -98,18 +98,18 @@ Stacktrace:
 נייר סופג פרפקט 8 גלילים,12.90,N/A,11
 סבון ידיים פלמוליב,18.10,12.30,25
 סודה שוופס,N/A,3.20,130
-סוכר חום,14.10,12.20,65
+סוכר חום,14.10,12.50,65
 סוכר לבן,12.10,12.20,65
 סן בנדטו,22.90,N/A,130
 סרקל,N/A,21.90,20
-עגבניה,7.90,4.90,300
+עגבניה,7.90,1.80,300
 עגבניות מרוסקות,10.90,9.80,85
 עין גדי,14.10,13.70,120
 עירית,5.90,N/A,300
 פודינג וניל,5.80,4.90,65
 פיצה מעדנות,36.30,N/A,50
-פלפל,7.90,7.90,300
-פסטה אסם תלתלים,6.80,5.10,30
+פלפל,7.90,1.80,300
+פסטה אסם תלתלים,6.80,5.90,30
 פסטה ברילה חיטה מלאה,17.10,15.70,30
 פסטה צבעונית,N/A,N/A,30
 פתי בר,12.90,10.10,30
