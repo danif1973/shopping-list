@@ -1,7 +1,6 @@
 import csv
 import logging
-from hh_scraper import HH
-from rl_scraper import RL
+import importlib
 from browser_manager import BrowserManager
 from price_matrix import PriceMatrix
 from store_items import StoreItems
@@ -17,10 +16,25 @@ logging.basicConfig(
     ]
 )
 
-SCRAPER_MAP = {
-    'hh': HH,
-    'rl': RL,
-}
+def build_scraper_map(store_names):
+    """
+    Dynamically build the scraper map based on store names from data.csv
+    """
+    scraper_map = {}
+    
+    for store_name in store_names:
+        try:
+            # Import the module dynamically
+            module = importlib.import_module(f"{store_name}_scraper")
+            # Get the class (assuming class name is uppercase store name)
+            scraper_class = getattr(module, store_name.upper())
+            scraper_map[store_name] = scraper_class
+            logging.info(f"Successfully loaded scraper for store: {store_name}")
+        except (ImportError, AttributeError) as e:
+            logging.warning(f"No scraper found for store: {store_name} - {e}")
+            continue
+    
+    return scraper_map
 
 HH_TEST_URL = "https://shop.hazi-hinam.co.il/catalog/products/267914/4230364/%D7%9E%D7%A7%D7%9C%D7%95%D7%AA-%D7%91%D7%95%D7%A8%D7%A7%D7%A1-%D7%A4%D7%99%D7%9C%D7%95-%D7%92%D7%91%D7%99%D7%A0%D7%94-%D7%91%D7%A1%D7%92%D7%A0%D7%95%D7%9F-%D7%A6%D7%A8%D7%A4%D7%AA%D7%99"
 #RL_TEST_URL = "https://www.rami-levy.co.il/he/online/search?item=7290000056845"
@@ -43,6 +57,10 @@ def main():
             reader = csv.DictReader(csvfile)
             store_names = [col for col in reader.fieldnames if col not in ['Product', 'hh_order']]
             logging.info(f"Found stores: {store_names}")
+            
+            # Build scraper map dynamically
+            SCRAPER_MAP = build_scraper_map(store_names)
+            logging.info(f"Built scraper map with {len(SCRAPER_MAP)} scrapers")
             
             # Prepare StoreItems for each store
             store_objects = {store: StoreItems(store) for store in store_names}

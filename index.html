@@ -31,7 +31,7 @@
         .product-name { font-size: 0.98em; font-weight: 400; color: #333; }
         .price-cell { text-align: center; padding: 2px 6px; border-radius: 4px; font-weight: 500; min-width: 60px; font-size: 0.95em; }
         .price-cell.available { background: #d4edda; color: #155724; }
-        .price-cell.unavailable { background: #f8d7da; color: #721c24; }
+        .price-cell.unavailable { background: #f8f9fa; color: #6c757d; }
         .price-cell.recommended { background: #fff3cd; color: #856404; border: 2px solid #ffc107; font-weight: bold; }
         .price-cell.highest { background: #f8d7da; color: #721c24; border: 2px solid #dc3545; font-weight: bold; }
         .price-cell.all-close { background: #d4edda !important; color: #155724 !important; border: 2px solid #28a745; font-weight: bold; }
@@ -72,6 +72,16 @@
         const PRICE_DIFF_THRESHOLD = 5;
         const EPSILON = 0.05;
         const storeNameMap = { rl: 'רמי לוי', hh: 'חצי חינם' };
+
+        // Helper function to sort products by hh_order
+        function sortByHhOrder(a, b) {
+            const orderA = a.product.hh_order || 999999;
+            const orderB = b.product.hh_order || 999999;
+            if (orderA === orderB) {
+                return a.product.name.localeCompare(b.product.name, 'he');
+            }
+            return orderA - orderB;
+        }
 
         // Helper functions to reduce duplication
         function findMinMaxPrices(product) {
@@ -128,7 +138,7 @@
             }
             const price = product.prices[store2];
             if (typeof price !== 'number') {
-                return '<div class="price-cell"></div>';
+                return '<div class="price-cell unavailable">N/A</div>';
             }
             const priceClass = getPriceCellClass(product, price, minPrice, maxPrice);
             const total = price * amount;
@@ -219,8 +229,16 @@
                 // Find the original index in products.products for selection
                 const originalIndex = products.products.indexOf(product);
                 const minStore = getRecommendedStore(product);
-                if (selectedItems.has(originalIndex) && minStore) {
-                    storeGroups[minStore].push({ product, index: originalIndex });
+                const isSelected = selectedItems.has(originalIndex);
+                const isUnavailable = minStore === null;
+                
+                if (isSelected) {
+                    if (minStore) {
+                        storeGroups[minStore].push({ product, index: originalIndex });
+                    } else {
+                        // Add unavailable items to HH store
+                        storeGroups['hh'].push({ product, index: originalIndex });
+                    }
                 } else {
                     ungrouped.push({ product, index: originalIndex });
                 }
@@ -231,14 +249,7 @@
                 const group = storeGroups[store];
                 if (group.length > 0) {
                     html += `<div class="section-title">${storeNameMap[store] || store}</div>`;
-                    group.sort((a, b) => {
-                        const orderA = a.product.hh_order || 999999;
-                        const orderB = b.product.hh_order || 999999;
-                        if (orderA === orderB) {
-                            return a.product.name.localeCompare(b.product.name, 'he');
-                        }
-                        return orderA - orderB;
-                    });
+                    group.sort(sortByHhOrder);
                     
                     let groupSum = 0;
                     let diffSum = 0;
@@ -299,14 +310,7 @@
 
             // Render ungrouped products
             if (ungrouped.length > 0) {
-                ungrouped.sort((a, b) => {
-                    const orderA = a.product.hh_order || 999999;
-                    const orderB = b.product.hh_order || 999999;
-                    if (orderA === orderB) {
-                        return a.product.name.localeCompare(b.product.name, 'he');
-                    }
-                    return orderA - orderB;
-                });
+                ungrouped.sort(sortByHhOrder);
                 ungrouped.forEach(({ product, index }) => {
                     const isSelected = selectedItems.has(index);
                     const { minPrice, maxPrice } = findMinMaxPrices(product);
@@ -404,23 +408,27 @@
         function downloadShoppingListHtml() {
             if (!products.products || products.products.length === 0) return;
             
-            // Group selected items by store
+            // Use the same structure as displayProducts()
             const storeGroups = {};
             products.stores.forEach(store => { storeGroups[store] = []; });
             
+            // Collect selected items using existing pattern
             products.products.forEach((product, index) => {
                 if (selectedItems.has(index)) {
                     const minStore = getRecommendedStore(product);
                     if (minStore) {
-                        let price = product.prices[minStore];
-                        const amount = productAmounts[index] || 1;
-                        let itemLine = product.name;
-                        if (amount > 1) itemLine += ` (x${amount})`;
-                        if (typeof price === 'number') {
-                            itemLine += ` - ₪${(price * amount).toFixed(2)}`;
-                        }
-                        storeGroups[minStore].push(itemLine);
+                        storeGroups[minStore].push({ product, index });
+                    } else {
+                        // Add unavailable items to HH store
+                        storeGroups['hh'].push({ product, index });
                     }
+                }
+            });
+
+            // Sort each group using existing logic
+            products.stores.forEach(store => {
+                if (storeGroups[store].length > 0) {
+                    storeGroups[store].sort(sortByHhOrder);
                 }
             });
 
@@ -443,7 +451,14 @@
                 if (storeGroups[store].length > 0) {
                     htmlContent += `\n    <div class="store-name">${storeNameMap[store] || store}</div>`;
                     htmlContent += `\n    <ol>`;
-                    storeGroups[store].forEach(itemLine => {
+                    storeGroups[store].forEach(({ product, index }) => {
+                        let price = product.prices[store];
+                        const amount = productAmounts[index] || 1;
+                        let itemLine = product.name;
+                        if (amount > 1) itemLine += ` (x${amount})`;
+                        if (typeof price === 'number') {
+                            itemLine += ` - ₪${(price * amount).toFixed(2)}`;
+                        }
                         htmlContent += `\n        <li>${itemLine}</li>`;
                     });
                     htmlContent += `\n    </ol>`;
@@ -464,4 +479,5 @@
         }
     </script>
 </body>
+</html>
 </html>
