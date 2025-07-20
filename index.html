@@ -96,12 +96,25 @@
 
         function getRecommendedStore(product) {
             const { minPrice, maxPrice } = findMinMaxPrices(product);
+            
+            // If no prices available at all, return null
             if (minPrice === null) return null;
             
+            // If price difference is less than threshold, prefer HH
             if (maxPrice !== null && (maxPrice - minPrice) < PRICE_DIFF_THRESHOLD) {
-                return 'hh';
+                // Check if HH has a price, if not, return the cheapest available store
+                if (typeof product.prices['hh'] === 'number') {
+                    return 'hh';
+                } else {
+                    // Find the cheapest store that has a price
+                    const minStores = products.stores.filter(s =>
+                        typeof product.prices[s] === 'number' && Math.abs(product.prices[s] - minPrice) < EPSILON
+                    );
+                    return minStores.length > 0 ? minStores[0] : null;
+                }
             }
             
+            // Price difference is significant, return the cheapest store
             const minStores = products.stores.filter(s =>
                 typeof product.prices[s] === 'number' && Math.abs(product.prices[s] - minPrice) < EPSILON
             );
