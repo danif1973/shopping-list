@@ -38,7 +38,7 @@
 חלב תנובה 1% 1 ליטר,6.85,N/A,50
 חלב תנובה 3% 1 ל',7.28,7.20,50
 חלה קלה,N/A,N/A,80
-חמאה תנובה,10.10,9.60,40
+חמאה תנובה,10.10,9.00,40
 טובורג שישיה ,35.90,33.10,130
 טופו הבית מרקם קשה,13.10,8.90,50
 טורטליני,19.10,18.90,50
@@ -46,25 +46,25 @@
 טמפקס כתום 30 יח',N/A,N/A,25
 טמפקס צהוב 30 יח',"Error scraping price: Message: 
 Stacktrace:
-	GetHandleVerifier [0x0x7ff684956f65+78965]
-	GetHandleVerifier [0x0x7ff684956fc0+79056]
-	(No symbol) [0x0x7ff6846e9dda]
-	(No symbol) [0x0x7ff6847402ea]
-	(No symbol) [0x0x7ff68474059c]
-	(No symbol) [0x0x7ff684793f37]
-	(No symbol) [0x0x7ff6847686af]
-	(No symbol) [0x0x7ff684790dbe]
-	(No symbol) [0x0x7ff684768443]
-	(No symbol) [0x0x7ff684731311]
-	(No symbol) [0x0x7ff6847320a3]
-	GetHandleVerifier [0x0x7ff684c0e26d+2926461]
-	GetHandleVerifier [0x0x7ff684c08993+2903715]
-	GetHandleVerifier [0x0x7ff684c26aed+3026941]
-	GetHandleVerifier [0x0x7ff6849716fe+187406]
-	GetHandleVerifier [0x0x7ff6849796ef+220159]
-	GetHandleVerifier [0x0x7ff68495faf4+114692]
-	GetHandleVerifier [0x0x7ff68495fca9+115129]
-	GetHandleVerifier [0x0x7ff6849464d8+10728]
+	GetHandleVerifier [0x0x7ff70ab06f65+78965]
+	GetHandleVerifier [0x0x7ff70ab06fc0+79056]
+	(No symbol) [0x0x7ff70a899dda]
+	(No symbol) [0x0x7ff70a8f02ea]
+	(No symbol) [0x0x7ff70a8f059c]
+	(No symbol) [0x0x7ff70a943f37]
+	(No symbol) [0x0x7ff70a9186af]
+	(No symbol) [0x0x7ff70a940dbe]
+	(No symbol) [0x0x7ff70a918443]
+	(No symbol) [0x0x7ff70a8e1311]
+	(No symbol) [0x0x7ff70a8e20a3]
+	GetHandleVerifier [0x0x7ff70adbe26d+2926461]
+	GetHandleVerifier [0x0x7ff70adb8993+2903715]
+	GetHandleVerifier [0x0x7ff70add6aed+3026941]
+	GetHandleVerifier [0x0x7ff70ab216fe+187406]
+	GetHandleVerifier [0x0x7ff70ab296ef+220159]
+	GetHandleVerifier [0x0x7ff70ab0faf4+114692]
+	GetHandleVerifier [0x0x7ff70ab0fca9+115129]
+	GetHandleVerifier [0x0x7ff70aaf64d8+10728]
 	BaseThreadInitThunk [0x0x7ffcb24b259d+29]
 	DummyExport [0x0x7ffc75bf748e+75534]
 	DummyExport [0x0x7ffc75c457bc+395836]
@@ -98,6 +98,7 @@ Stacktrace:
 נייר סופג סנו סושי שישיה ,13.20,12.00,11
 נייר סופג פרפקט 6 גלילים,13.90,N/A,11
 נייר סופג פרפקט 8 גלילים,12.90,N/A,11
+סבון ידיים כיף,15.10,N/A,25
 סבון ידיים פלמוליב,18.10,12.30,25
 סודה שוופס,N/A,3.20,130
 סוכר חום,14.10,12.50,65
@@ -111,6 +112,7 @@ Stacktrace:
 פודינג וניל,5.80,5.90,65
 פיצה מעדנות,36.30,N/A,50
 פיתות 5 יח',6.00,N/A,80
+פלמוליב סבון כלים,13.10,8.80,N/A
 פלפל,7.90,6.90,300
 פסטה אסם תלתלים,6.80,5.90,30
 פסטה ברילה חיטה מלאה,17.10,15.70,30
@@ -126,6 +128,7 @@ Stacktrace:
 קטשופ,6.50,12.90,120
 קמח חיטה ,4.40,3.80,65
 קפה ג'ייקובס,29.90,29.90,110
+קפה טורקי,11.20,10.90,110
 קפה טייסטרס צ'ויס,35.90,36.20,110
 רצפז פלוס דוחה תיקנים 2 ל',23.20,39.90,25
 שום כתוש קפוא דורות,13.10,N/A,50
@@ -136,8 +139,8 @@ Stacktrace:
 שמן קנולה עץ הזית 1 ל',15.10,12.60,85
 שמנת חמוצה 15%,2.30,2.80,40
 שמנת חמוצה 9%,4.70,4.50,40
-שמנת לבישול,9.80,9.60,50
-שמנת מתוקה,8.30,7.80,50
+שמנת לבישול,9.80,9.90,50
+שמנת מתוקה,8.30,7.90,50
 שמפו כיף,15.10,10.50,20
 שעועית עדינה קפואה,25.20,N/A,50
 שקיות אשפה 120 ל',10.00,N/A,27
