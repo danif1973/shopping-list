@@ -47,12 +47,30 @@
         .btn-grey:disabled { background: #ccc; color: #eee; cursor: not-allowed; }
         .amount-input { border-radius: 20px; border: 1px solid #ccc; box-shadow: none; }
         .product-name-amount { display: flex; flex-direction: row; align-items: center; gap: 8px; }
+        .header { 
+            position: relative; 
+        }
+        .last-updated { 
+            font-size: 0.75em; 
+            color: #adb5bd; 
+            text-align: right; 
+            padding: 0 16px; 
+            font-style: italic;
+            background: #23272b;
+            position: absolute;
+            bottom: 8px;
+            right: 0;
+            left: 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>🛒 רשימת קניות</h1>
+            <div id="lastUpdated" class="last-updated" style="display: none;">
+                עדכון אחרון: <span id="lastUpdatedDate"></span>
+            </div>
         </div>
         <div class="controls" style="display:flex; flex-direction:row; justify-content:flex-start; align-items:center; width:100%; gap: 10px;">
             <input type="text" id="searchBar" placeholder="חפש מוצר..." style="flex:1; width:0; margin-right:0; padding:10px 16px; border-radius:20px; border:1px solid #ccc; font-size:1em; direction:rtl;">
@@ -159,6 +177,36 @@
             return `<div class="price-cell ${priceClass}">${priceText}</div>`;
         }
 
+        // Function to format date in Hebrew locale
+        function formatDate(date) {
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            return date.toLocaleDateString('he-IL', options);
+        }
+
+        // Function to update last modified date
+        function updateLastModifiedDate() {
+            fetch('prices.csv', { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        const lastModified = response.headers.get('last-modified');
+                        if (lastModified) {
+                            const date = new Date(lastModified);
+                            document.getElementById('lastUpdatedDate').textContent = formatDate(date);
+                            document.getElementById('lastUpdated').style.display = 'block';
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.log('Could not fetch last modified date:', error);
+                });
+        }
+
         // On startup, fetch prices.csv
         window.addEventListener('DOMContentLoaded', () => {
             fetch('prices.csv')
@@ -170,6 +218,8 @@
                     products = parseCSV(csv);
                     displayProducts();
                     hideError();
+                    // Update last modified date after successful load
+                    updateLastModifiedDate();
                 })
                 .catch(error => {
                     showError('שגיאה בטעינת הקובץ: ' + error.message);
